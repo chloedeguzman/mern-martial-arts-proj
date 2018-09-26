@@ -1,0 +1,7 @@
+export const GET_MARTIAL_ARTS = 'GET_MARTIAL_ARTS';
+export const ADD_MARTIAL_ART = 'ADD_MARTIAL_ART';
+export const DELETE_MARTIAL_ART = 'DELETE_MARTIAL_ART';
+export const MARTIAL_ARTS_LOADING = 'MARTIAL_ARTS_LOADING';
+
+export const SIGN_IN = 'SIGN_IN';
+export const SIGN_UP = 'SIGN_UP';
