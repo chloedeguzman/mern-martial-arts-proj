@@ -8,18 +8,41 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Container
+  Container,
+  Dropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu
 } from 'reactstrap';
 
 class AppNavbar extends Component {
 
-  state = {
-    isOpen: false
+  constructor(props) {
+    super(props);
+
+    this.toggleStandup = this.toggleStandup.bind(this);
+    this.toggleClinch = this.toggleClinch.bind(this);
+    this.toggleGround = this.toggleGround.bind(this);
+    this.state = {
+      standupOpen: false,
+      clinchOpen: false,
+      groundOpen: false
+    };
   }
 
-  toggle = () => {
+  toggleStandup() {
     this.setState({
-      isOpen: !this.state.isOpen
+      standupOpen: !this.state.standupOpen
+    });
+  }
+  toggleClinch() {
+    this.setState({
+      clinchOpen: !this.state.clinchOpen
+    });
+  }
+  toggleGround() {
+    this.setState({
+      groundOpen: !this.state.groundOpen
     });
   }
 
@@ -29,16 +52,46 @@ class AppNavbar extends Component {
         <Navbar color="dark" dark expand="sm" className="mb-5">
           <Container>
             <NavbarBrand href="/">Mixed Martial Arts </NavbarBrand>
-            <NavbarToggler onClick={this.toggle}/>
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-                <NavItem>
-                  <NavLink href="https://muay-thai-guy.com/">
-                    Muay Thai Guy
-                  </NavLink>
-                </NavItem>
-              </Nav>
-            </Collapse>
+            <Dropdown nav isOpen={this.state.standupOpen} toggle={this.toggleStandup}>
+            <DropdownToggle nav caret>
+              Stand Up
+            </DropdownToggle>
+            <DropdownMenu left>
+              <DropdownItem>Boxing</DropdownItem>
+              <DropdownItem>Kickboxing</DropdownItem>
+              <DropdownItem>Muay Thai</DropdownItem>
+              <DropdownItem>Karate</DropdownItem>
+              <DropdownItem>Tae Kwon Do</DropdownItem>
+              <DropdownItem>Capoeira</DropdownItem>
+              <DropdownItem>Combat Sambo</DropdownItem>
+              <DropdownItem>Savate</DropdownItem>
+              <DropdownItem>Wushu Sanshou</DropdownItem>
+            </DropdownMenu>
+            </Dropdown>
+            <Dropdown nav isOpen={this.state.clinchOpen} toggle={this.toggleClinch}>
+            <DropdownToggle nav caret>
+              Clinch
+            </DropdownToggle>
+            <DropdownMenu left>
+              <DropdownItem>Judo</DropdownItem>
+              <DropdownItem>Freestyle</DropdownItem>
+              <DropdownItem>Greco-Roman Wrestling</DropdownItem>
+              <DropdownItem>Sambo</DropdownItem>
+              <DropdownItem>Wushu Sanshou</DropdownItem>
+            </DropdownMenu>
+            </Dropdown>
+            <Dropdown nav isOpen={this.state.groundOpen} toggle={this.toggleGround}>
+            <DropdownToggle nav caret>
+              Ground
+            </DropdownToggle>
+              <DropdownMenu left>
+                <DropdownItem>Brazilian Jiu-Jitsu</DropdownItem>
+                <DropdownItem>Judo</DropdownItem>
+                <DropdownItem>Sambo</DropdownItem>
+                <DropdownItem>Catch Wrestling</DropdownItem>
+                <DropdownItem>Submission Grappling</DropdownItem>
+            </DropdownMenu>
+            </Dropdown>
           </Container>
         </Navbar>
       </div>

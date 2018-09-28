@@ -7,8 +7,7 @@ const router = express.Router();
 router.post('/signup', (req, res, next) => {
 
   User.find({
-    email: req.body.email,
-    username: req.body.username
+    email: req.body.emai1
   }, (err, previousUsers) => {
     if(err) {
       return res.send({
@@ -21,6 +20,16 @@ router.post('/signup', (req, res, next) => {
         message: 'Error: Account already exists.'
       });
     }
+    User.find({
+      username: req.body.username
+    }, (err, previousUsers) => {
+      if(err) {
+        return res.send({
+          success: false,
+          message: 'Error: Account already exists.'
+        });
+      }
+    })
 
     const newUser = new User({
       email: req.body.email,
